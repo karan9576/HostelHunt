@@ -5,12 +5,18 @@ const listing=require("./models/listing.js");//13
 const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";//10.1
 const path=require("path");
 const methodOverride = require('method-override');//28
+const ejsMate = require('ejs-mate');//34
+
 
 app.set("view engine","ejs");//16
 app.set("views",path.join(__dirname,"views"));//16
 app.use(methodOverride('_method'))//28
+app.use(express.static(path.join(__dirname,"/public")));
+
 
 app.use(express.urlencoded({extended : true}));
+
+app.engine('ejs',ejsMate);//34
 
 
 main()//10.3
@@ -89,6 +95,6 @@ app.delete("/listings/:id",async(req,res)=>{
 // });
 
 
-app.listen(8080,()=>{//6
+app.listen(8081,()=>{//6
     console.log("server is listening to 8080");
 })
