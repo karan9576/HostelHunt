@@ -13,6 +13,13 @@ image:{
 price:Number,
 location:String,
 country:String,
+
+reviews :[
+    {
+        type:Schema.type.objectid,
+        ref:"review"
+    }
+]
 });
 const listing=mongoose.model("listing",listingSchema)//12
 module.exports=listing;//12
