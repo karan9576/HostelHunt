@@ -8,6 +8,8 @@ const ejsMate = require('ejs-mate');//34
 const ExpressError=require('./utils/ExpressError.js');//59
 const listings=require("./routes/listing.js");
 const reviews=require("./routes/review.js");
+const session=require("express-session");//81
+const flash = require('connect-flash');//84
 
 
 app.set("view engine","ejs");//16
@@ -19,6 +21,7 @@ app.use(express.static(path.join(__dirname,"/public")));
 app.use(express.urlencoded({extended : true}));
 
 app.engine('ejs',ejsMate);//34
+
 
 
 main()//10.3
@@ -33,6 +36,26 @@ async function main(){//10.2
     await mongoose.connect(MONGO_URL); 
 }
 
+const sessionOptions={
+    secret: 'mysupersecretcode',
+    resave: false,
+    saveUninitialized: true,
+    cookie :{
+        expires : Date.now()+7*24*60*60*1000,
+        maxAge : 7*24*60*60*1000,
+        httpOnly : true,
+    }
+    
+  };
+app.use(session(sessionOptions));
+app.use(flash());
+
+
+app.use((req,res,next)=>{
+    res.locals.success=req.flash("success");
+    res.locals.error=req.flash("error");
+    next();
+})
 
 app.get("/",(req,res)=>{//7
     res.send("hi, i am root");
@@ -40,8 +63,8 @@ app.get("/",(req,res)=>{//7
 
 
 
-app.use("/listings",listings);
-app.use("/listings/:id/reviews",reviews)
+app.use("/listings",listings);//78
+app.use("/listings/:id/reviews",reviews)//78
 
 
 
