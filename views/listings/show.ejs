@@ -42,10 +42,27 @@
                 <%if(currUser){%>
                 <h4> leave a review</h4>
                 <form action="/listings/<%= Listing._id%>/reviews" method="POST" novalidate class="needs-validation">
-                    <div class="mb-3  mt-3">
+                    <!-- <div class="mb-3  mt-3">
                         <label for="rating" class="form-label">Rating</label>
                         <input type="range" min=1 max=5 name="review[rating]" id="rating" class="form-range">
+                    </div> -->
+                    <div class="mb-3  mt-3">
+                    <label for="rating" class="form-label">Rating</label>
+                    <fieldset class="starability-slot">
+                        <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked aria-label="No rating." />
+                        <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                        <label for="first-rate1" title="Terrible">1 star</label>
+                        <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                        <label for="first-rate2" title="Not good">2 stars</label>
+                        <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                        <label for="first-rate3" title="Average">3 stars</label>
+                        <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                        <label for="first-rate4" title="Very good">4 stars</label>
+                        <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                        <label for="first-rate5" title="Amazing">5 stars</label>
+                      </fieldset>
                     </div>
+
                     <div class="mb-3  mt-3">
                         <label for="comment" class="form-label">Comments</label>
                         <textarea name="review[comment]" id="comment" cols="30" rows="5" class="form-control"
@@ -62,12 +79,14 @@
                     <% for(review of Listing.reviews){%>
                         <div class="card col-5 ms-3 mb-3">
                             <div class="card-body">
-                                <h5 class="card-title"><%=review.author.username%></h5>
+                                <h5 class="card-title">@<%=review.author.username%></h5>
                                 <div class="card-text">
-                                    <%=review.comment%>
+                                    <p class="starability-result" data-rating="<%=review.rating%>">
+                                      Rated: 3 stars
+                                    </p>
                                 </div>
-                                <div class="card-text">
-                                    <%=review.rating%> stars
+                                <div class="card-text mb-3">
+                                    <%=review.comment%>
                                 </div>
                             </div>
                             <form class="mb-3" method="POST"
