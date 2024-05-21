@@ -8,7 +8,7 @@ Developed a full-stack web application named Hostel Hunt to facilitate the searc
 
 **Key Responsibilities and Achievements:**
 
-- **Designed** and **developed** the user interface using HTML, CSS, and JavaScript, ensuring a responsive and intuitive user experience.
+- **Designed** and **developed** the user interface using HTML, CSS, and JavaScript, and EJS ensuring a responsive and intuitive user experience.
 - **Implemented** RESTful APIs for efficient communication between the front-end and back-end, adhering to REST principles for a standardized approach.
 - **Integrated** MongoDB as the database solution to store and manage user data and hostel information, ensuring scalability and reliability.
 - **Configured** Node.js and Express.js to create a robust back-end server, enabling efficient handling of requests and responses.
@@ -22,7 +22,7 @@ Developed a full-stack web application named Hostel Hunt to facilitate the searc
 
 **Technologies Used:**
 
-- **Front-End:** HTML, CSS, JavaScript
+- **Front-End:** HTML, CSS, JavaScript,EJS
 - **Back-End:** Node.js, Express.js
 - **Database:** MongoDB
 - **Security:** Passport.js for authentication and authorization
