@@ -1,7 +1,16 @@
+if(process.env.NODE_ENV !="production"){
+require('dotenv').config()
+}
+
+
 const express =require("express");//6
 const app=express();//6
 const mongoose=require("mongoose");//6
-const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";//10.1
+
+
+//const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";//10.1
+const dbUrl=process.env.ATLASDB_URL;
+
 const path=require("path");
 const methodOverride = require('method-override');//28
 const ejsMate = require('ejs-mate');//34
@@ -10,6 +19,7 @@ const listingRouter=require("./routes/listing.js");
 const reviewRouter=require("./routes/review.js");
 const userRouter=require("./routes/user.js");
 const session=require("express-session");//81
+const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');//84
 const passport=require('passport');
 const LocalStrategy=require('passport-local');
@@ -36,11 +46,24 @@ main()//10.3
 });
 
 async function main(){//10.2
-    await mongoose.connect(MONGO_URL); 
+    await mongoose.connect(dbUrl); 
 }
 
+
+const store=MongoStore.create({
+    mongoUrl:dbUrl,
+    crypto :{
+        secret:process.env.SECRET
+    },
+    touchAfter:24*3600,
+});
+store.on("error",()=>{
+    console.log("Error is mono session store",err);
+})
+
 const sessionOptions={
-    secret: 'mysupersecretcode',
+    store,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: true,
     cookie :{

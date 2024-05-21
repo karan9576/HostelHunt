@@ -1,5 +1,8 @@
 <% layout("/layouts/biolerplate") %>
-
+<script>
+    const mapToken="<%=process.env.MAP_TOKEN%>";
+    const listing=<%-JSON.stringify(Listing)%>; 
+</script>
     <body>
         <div class="row mt-3">
             <div class="col-8 offset-3">
@@ -8,14 +11,15 @@
                 </h3>
             </div>
             <div class="card col-6 offset-3 show-card listing-card">
-                <img src="<%= Listing.image%>" class="card-img-top show-img" alt="listing_image">
+                <img src="<%= Listing.image.url%>" class="card-img-top show-img" alt="listing_image">
                 <div class="card-body">
                     <p class="card-text">
                         owned by <i><%= Listing.owner.username%></i> <br>
-                            <%= Listing.description%> <br>
-                                &#8377;<%= (Listing.price).toLocaleString("en-IN")%> <br>
-                                    <%= Listing.location%> <br>
-                                        <%= Listing.country%> <br>
+                        </p>
+                        <p class="card-body">    <%= Listing.description%> <br></p>
+                          <p class="card-body">&#8377;<%= (Listing.price).toLocaleString("en-IN")%> <br></p>      
+                                <p class="card-body"> <%= Listing.location%> <br></p>   
+                                    <p class="card-body"><%= Listing.country%> <br></p>    
                     </p>
                 </div>
             </div>
@@ -73,7 +77,7 @@
                 </form>
                 <hr>
                 <%}%>
-              
+              <%if(Listing.reviews.length >0){%>
                 <p><b>All reviews</b></p>
                 <div class="row">
                     <% for(review of Listing.reviews){%>
@@ -96,6 +100,14 @@
                         </div>
                         <%}%>
                 </div>
+                <% }%>
             </div>
+            <div class="col-8 offset-3 mb-3">
+                <h3>where you'll be</h3>
+                <div id="map"></div>
             </div>
+            
+            </div>
+            <script src="/js/map.js"></script>
     </body>
+
