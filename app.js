@@ -93,9 +93,6 @@ app.use((req,res,next)=>{
     next();
 })
 
-app.get("/",(req,res)=>{//7
-    res.send("hi, i am root");
-})
 
 
 
