@@ -13,10 +13,6 @@ body{
     height:5rem;
     background-color: white;
 }
-.fa-compass{
-    color :#fe424d;
-    font-size: 2rem;
-}
 
 .nav-link{
     color:#222222 !important;
@@ -90,13 +86,13 @@ body{
 }
 
 .add-btn{
-    background-color:#fe424d !important;
+    background-color:#01497c !important;
     border: none !important;
 }
 
 /* Edit page */
 .edit-btn{
-    background-color:#fe424d !important;
+    background-color:#01497c !important;
     border: none !important;
 }
 
@@ -113,7 +109,12 @@ body{
     padding-right:0;
 }
 
-#map{
-    height: 400px;
-    width: 80vh;
+#map {
+    height: 40vh;
+    width: 100%; 
+    max-width: 100%; 
+}
+.navbar-brand {
+    color:#01497c !important;
+    font-weight: bold !important;
 }

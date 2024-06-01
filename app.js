@@ -8,7 +8,6 @@ const app=express();//6
 const mongoose=require("mongoose");//6
 
 
-//const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";//10.1
 const dbUrl=process.env.ATLASDB_URL;
 
 const path=require("path");
@@ -94,15 +93,9 @@ app.use((req,res,next)=>{
 })
 
 
-
-
-
-
 app.use("/listings",listingRouter);//78
 app.use("/listings/:id/reviews",reviewRouter)//78
 app.use("/",userRouter);
-
-
 
 
 app.all('*',(req,res,next)=>{
