@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/karan9576/HostelHunt'
+                git branch: 'main', url: 'https://github.com/karan9576/HostelHunt'
             }
         }
 
