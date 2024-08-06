@@ -20,6 +20,6 @@ pipeline {
                     sh "docker exec ${websiteContainer} nohup node /app/app.js &"
                 }
             }
-        }
-    }
+        }
+    }
 }
